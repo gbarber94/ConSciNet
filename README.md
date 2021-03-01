@@ -1,3 +1,3 @@
 # ConSciNet
 
-![](figures/ConSciNet_arch.png=250x)
+![](figures/ConSciNet_arch.png | width=100)
