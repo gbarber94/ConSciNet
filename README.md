@@ -1,3 +1,3 @@
 # ConSciNet
 
-![](figures/ConSciNet_arch.png | width=100)
+![](figures/ConSciNet_arch.png){:height="36px" width="36px"}
