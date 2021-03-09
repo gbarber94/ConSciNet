@@ -1,6 +1,7 @@
 import autograd
 import autograd.numpy as np
 
+# default params
 spring_params = {'m':1,
                  'k':1}
 
