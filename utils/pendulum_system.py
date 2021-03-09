@@ -4,7 +4,7 @@ import autograd.numpy as np
 # System functions
 
 # place holder pen params
-pen_params = {'g':3,
+pen_params = {'g':1,
               'm':1,
               'l':1}
 
