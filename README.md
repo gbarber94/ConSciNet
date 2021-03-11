@@ -18,6 +18,10 @@ add abstract here
 - Pendulum:    add link when public
 - Mass-spring: add link when public
 
+## nbviewer links:
+- Pendulum: https://nbviewer.jupyter.org/github.com/gbarber94/ConSciNet/blob/main/ConSciNet_pendulum.ipynb
+- Mass-spring: https://nbviewer.jupyter.org/github.com/gbarber94/ConSciNet/blob/main/ConSciNet_mass_spring.ipynb
+
 ## Dependencies
 - PyTorch
 - NumPy
