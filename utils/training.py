@@ -19,11 +19,6 @@ def load_model(model,file_path):
 
 
 def train_model(model,dataloader,n_epochs= 1000, beta = 0.0005, save = True):
-  """
-  Training loop:
-  At the end of training this colab will download the models weights. If the colab session exits these weights can be uploaded 
-  and loaded in to a new session to skip the slow training step.
-  """
 
   model = model.train()
   L2_loss = nn.MSELoss()
@@ -40,7 +35,7 @@ def train_model(model,dataloader,n_epochs= 1000, beta = 0.0005, save = True):
       dxdt = outputs
 
       # add beta vae loss
-      beta = beta #deafult = 0.0005 selecting a small beta value to balance hnn_loss 
+      beta = beta #deafult = 0.005 selecting a small beta value to balance hnn_loss 
 
       # train with just hnn_loss for first couple of epochs
       if epoch > 5: 
