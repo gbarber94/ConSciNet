@@ -19,17 +19,9 @@ Hamiltonian parameterization that generalizes well with respect to the discovere
 We apply our framework to simple dynamical problems and show that it discovers physically
 meaningful parameters while respecting the governing physics.
 
-![](figures/ConSciNet_pen.png)
+![](figures/ConSciNet_pen.png).center[Generating pendulum trajectories. The discovered length like parameter $l^*$
+for each model was interpolated]
 
-.center[Generating pendulum trajectories. The discovered length like parameter $l^*$
-for each model was interpolated
-between its minimum and maximum values and used to evaluate each model’s decoder. From left to right the value of l
-∗
-input into each model’s decoder was increased. (a) Extrapolated phase plot of both models predictions and the ground
-truth values over the interval [0,20]. (b) Time plot of the position q over the training interval [0,10]. The ConSciNet
-model returned predictions inline with ground truth values and respected the conservation of energy constraint while
-the Baseline model failed to respect the constraint.
-]
 
 ## Colab links:
 
