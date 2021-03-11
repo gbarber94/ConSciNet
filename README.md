@@ -5,9 +5,6 @@ Gregory Barber, Mulugeta A. Haile, and Tzikang Chen | 2021
 This repository contains the trained models, data and code used in the publication: ADD PUBLICATION LINK .
 
 ![](figures/ConSciNet_arch.png)
-
-![](figures/ConSciNet_pen.png)
-
 ___
 ## Summary
 
@@ -21,6 +18,8 @@ system’s physical parameters from canonical coordinate observations. The netwo
 Hamiltonian parameterization that generalizes well with respect to the discovered physical parameters.
 We apply our framework to simple dynamical problems and show that it discovers physically
 meaningful parameters while respecting the governing physics.
+
+![](figures/ConSciNet_pen.png)
 
 ## Colab links:
 
