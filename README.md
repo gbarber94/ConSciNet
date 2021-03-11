@@ -17,5 +17,6 @@ ___
 
 ## Dependencies
 - PyTorch
-- Numpy
-- Scipy
+- NumPy
+- SciPy
+- Autograd
