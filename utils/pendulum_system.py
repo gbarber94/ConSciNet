@@ -20,7 +20,7 @@ def hamiltonian_fn(coords,pen_params):
 
     return H
 
-def dynamics_fn(t, coords,g = 30):
+def dynamics_fn(t, coords):
     dcoords = autograd.grad(hamiltonian_fn)(coords,pen_params)
     dqdt, dpdt = np.split(dcoords,2)
     S = np.concatenate([dpdt, -dqdt], axis=-1)
@@ -39,11 +39,11 @@ def integrate_model(model, t_span, y0, lv,**kwargs):
     return solve_ivp(fun=fun, t_span=t_span, y0=y0, **kwargs)
 
 
-def add_noies(trj,sigma = .01):
+def add_noies(trj,sigma = .03):
   noies = np.random.normal(0,sigma, len(trj))
   return trj + noies
 
-def noies_data(data,sigma = 0.01):
+def noies_data(data,sigma = 0.03):
   q_with_noies = [add_noies(q, sigma) for q in data['q']]
   p_with_noies = [add_noies(p, sigma) for p in data['p']]
   data['q_with_noies'] = q_with_noies
@@ -61,8 +61,6 @@ def get_aux_vars(data):
   n_to_gen = data['x'].shape[0]
   aux_vars = np.zeros([n_to_gen,2])
   qp_dot1 = np.zeros([n_to_gen,2])
-
-  #t_to_eval = np.random.randint(0,49)
     
   for i in range(n_to_gen):
     t_to_eval = np.random.randint(0,49)
