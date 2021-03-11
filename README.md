@@ -11,12 +11,12 @@ This repository contains the trained models, data and code used in the publicati
 ___
 ## Summary
 
-abstract here
+add abstract here
 
 ## Colab links:
 
-- Pendulum:
-- Mass-spring:
+- Pendulum:    add link when public
+- Mass-spring: add link when public
 
 ## Dependencies
 - PyTorch
