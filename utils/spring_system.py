@@ -21,7 +21,7 @@ def dynamics_fn(t, coords):
     
     return S
 
-def get_one_trajectory(t_span=[0,5], timescale=15, y0= np.array([2,0]), noise_std=0.1, n_points = 50, **kwargs):
+def get_one_trajectory(t_span=[0,10], y0= np.array([1,0]), noise_std=0.1, n_points = 100, **kwargs):
     
     t_eval = np.linspace(t_span[0], t_span[1], n_points)
     
@@ -41,7 +41,7 @@ def get_one_trajectory(t_span=[0,5], timescale=15, y0= np.array([2,0]), noise_st
 
     return q, p, dqdt,dpdt,t_eval
 
-def gen_data(n_to_gen = 100, m_interval = [0.1, 0.5], k_interval = [0.1, 0.5],y0= np.array([1,0])):
+def gen_data(n_to_gen = 100, m_interval = [0.5, 1], k_interval = [0.1, 0.5],y0= np.array([1,0])):
 
   x = np.zeros([n_to_gen,50])
   aux_vars = np.zeros([n_to_gen,2])
@@ -94,11 +94,11 @@ def gen_data(n_to_gen = 100, m_interval = [0.1, 0.5], k_interval = [0.1, 0.5],y0
 
   return data
 
-def add_noies(trj,sigma = .01):
+def add_noies(trj,sigma = .03):
   noies = np.random.normal(0,sigma, len(trj))
   return trj + noies
 
-def noies_data(data,sigma = 0.01):
+def noies_data(data,sigma = 0.03):
   q_with_noies = [add_noies(q, sigma) for q in data['q']]
   p_with_noies = [add_noies(p, sigma) for p in data['p']]
   data['q_with_noies'] = q_with_noies
@@ -116,8 +116,6 @@ def get_aux_vars(data):
   n_to_gen = data['x'].shape[0]
   aux_vars = np.zeros([n_to_gen,2])
   qp_dot1 = np.zeros([n_to_gen,2])
-
-  #t_to_eval = np.random.randint(0,49)
     
   for i in range(n_to_gen):
     t_to_eval = np.random.randint(0,49)
@@ -126,7 +124,7 @@ def get_aux_vars(data):
     aux_vars[i] = data['q_with_noies'][i][50:][t_to_eval], data['p_with_noies'][i][50:][t_to_eval]  # q,p length 2
 
     # GT output
-    qp_dot1[i,0]   = data['qdot_with_noies'][i][50:][t_to_eval] #, data['pdot_with_noies'][50:][t_to_eval]) # q_dot, p_dot length 2
+    qp_dot1[i,0]   = data['qdot_with_noies'][i][50:][t_to_eval]  # q_dot, p_dot length 2
     qp_dot1[i,1]   = data['pdot_with_noies'][i][50:][t_to_eval]
 
   data['qp_dot_with_noies'] = qp_dot1
