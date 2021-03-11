@@ -20,8 +20,6 @@ We apply our framework to simple dynamical problems and show that it discovers p
 meaningful parameters while respecting the governing physics.
 
 ![](figures/ConSciNet_pen.png)
-.center[Generating pendulum trajectories. The discovered length like parameter $l^*$
-for each model was interpolated]
 
 
 ## Colab links:
