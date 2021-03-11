@@ -13,7 +13,10 @@ ___
 
 abstract here
 
+## Colab links:
 
+- Pendulum:
+- Mass-spring:
 
 ## Dependencies
 - PyTorch
