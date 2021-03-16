@@ -23,8 +23,8 @@ meaningful parameters while respecting the governing physics.
 
 ## Getting started
 - We provide two notebooks for reproducing the results. These notebooks can be run in colab from the provide links.
-- Data: the simulated coordinate data used in training is provided in the data directory as a pickle file. This data can be load using 'utlis/data_loader.py'.
-- Model: the ConSciNet implementation can be found in the model directory 'model/conscinet.py'. The trained model weights used in the results are available in 'model/weights'.
+- Data: the simulated coordinate data used in training is provided in the data directory as a pickle file. This data can be load using `utlis/data_loader.py`.
+- Model: the ConSciNet implementation can be found in the model directory `model/conscinet.py`. The trained model weights used in the results are available in `model/weights`.
 
 ## Colab links:
 - Pendulum:    add link when public
