@@ -86,7 +86,7 @@ class MLP(nn.Module):
 class HNN(torch.nn.Module):
     """
     :differentiable_model: MLP(input_dim =2,hidden_dim = 200,output_dim = 1), H_theta
-    :input_dim: 2, number of coords
+    :input_dim: number of coords + number of latent variables
     """
     
     def __init__(self, input_dim, differentiable_model):    
@@ -104,7 +104,7 @@ class HNN(torch.nn.Module):
 
     def time_derivative(self, x,qp, t=None):
 
-        H_theta = self.forward(x) # MLP model for H_theta a hamiltonian like quantity
+        H_theta = self.forward(x) # MLP parameterization of the hamiltonian returns an energy like value H*
         H_partials = torch.autograd.grad(H_theta.sum(), qp, create_graph=True)[0] # partials w.r.t (q & p) 
 
         #Map partials: dH/dp => dq/dt, -dH/dq => dp/dt
