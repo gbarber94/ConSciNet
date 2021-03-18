@@ -5,7 +5,7 @@ Gregory Barber, Mulugeta A. Haile, and Tzikang Chen | 2021
 This repository contains the trained models, data and code used in the publication: ADD PUBLICATION LINK .
 
 ![](figures/ConSciNet_arch.png)
-___
+
 ## Summary
 
 Given an unknown dynamical system, we are often interested in gaining insights into its physical
