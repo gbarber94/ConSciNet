@@ -27,8 +27,8 @@ meaningful parameters while respecting the governing physics.
 - Model: the ConSciNet implementation can be found in the model directory `model/conscinet.py`. The trained model weights used in the results are available in `model/weights`.
 
 ## Colab links:
-- Pendulum:    add link when public
-- Mass-spring: add link when public
+- Pendulum:    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/gbarber94/ConSciNet/blob/main/ConSciNet_pendulum.ipynb) <br>
+- Mass-spring: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/gbarber94/ConSciNet/blob/main/ConSciNet_mass_spring.ipynb) <br>
 
 ## nbviewer links:
 - Pendulum: https://nbviewer.jupyter.org/github.com/gbarber94/ConSciNet/blob/main/ConSciNet_pendulum.ipynb
