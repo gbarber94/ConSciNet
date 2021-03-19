@@ -59,7 +59,7 @@ def get_one_trajectory(t_span=[0,5], timescale=15, radius=None, y0= np.array([2,
     return q, p, dqdt,dpdt,t_eval
 
 
-def gen_data(n_to_gen = 100, len_interval = [0.1, 0.5],y0= np.array([1,0])):
+def gen_data(n_to_gen = 100, len_interval = [0.3, 0.8],y0= np.array([1,0])):
 
   x = np.zeros([n_to_gen,50])
   aux_vars = np.zeros([n_to_gen,2])
