@@ -40,7 +40,7 @@ class VAEncoder(nn.Module):
    # self.kl_loss = kl_divergence(self.mu, self.log_var, dim=self.latent_dim) 
     return self.latent_r
 
-  # KL div varriant used in SciNet
+  # KL div varriant used in SciNet: https://arxiv.org/abs/1807.10300
   def kl_divergence(self, means, log_sigma, dim, target_sigma=0.1):
     """
     Computes Kullback–Leibler divergence for arrays of mean and log(sigma)
