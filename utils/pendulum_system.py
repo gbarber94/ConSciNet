@@ -1,7 +1,8 @@
 import autograd
 import autograd.numpy as np
+import scipy.integrate
+solve_ivp = scipy.integrate.solve_ivp
 
-# System functions
 
 # default pen params, same as the constant params used in HNNs: https://arxiv.org/abs/1906.01563
 pen_params = {'g':3,
@@ -9,7 +10,12 @@ pen_params = {'g':3,
               'l':1}
 
 def hamiltonian_fn(coords,pen_params):
-
+  """
+  Hamiltonian function
+  Parameters:
+  coords: (q,p)
+  pen_params: dict containing the system parameters
+  """
     q, p = np.split(coords,2)
 
     g = pen_params['g']
@@ -21,12 +27,23 @@ def hamiltonian_fn(coords,pen_params):
     return H
 
 def dynamics_fn(t, coords):
+  """
+  Returns the time derivatives
+  """
     dcoords = autograd.grad(hamiltonian_fn)(coords,pen_params)
     dqdt, dpdt = np.split(dcoords,2)
     S = np.concatenate([dpdt, -dqdt], axis=-1)
     return S
 
 def integrate_model(model, t_span, y0, lv,**kwargs):
+  """
+  Integrates model
+  Parameters:
+  model : a trained NN
+  t_span: time interval given as a list [start_t,end_t]
+  y0: y0
+  lv: latent variables
+  """
     
     def fun(t, np_x):
         x = torch.tensor( np_x, requires_grad=True, dtype=torch.float32) #.view(1,2)
@@ -38,7 +55,10 @@ def integrate_model(model, t_span, y0, lv,**kwargs):
 
     return solve_ivp(fun=fun, t_span=t_span, y0=y0, **kwargs)
   
-def get_one_trajectory(t_span=[0,5], timescale=15, radius=None, y0= np.array([2,0]), noise_std=0.1, n_points = 50, **kwargs):
+def get_one_trajectory(t_span = [0,10], y0 = np.array([1,0]), n_points = 50, **kwargs):
+  """
+  Evaluate one GT trajectory
+  """
     
     t_eval = np.linspace(t_span[0], t_span[1], n_points)
     
@@ -60,6 +80,13 @@ def get_one_trajectory(t_span=[0,5], timescale=15, radius=None, y0= np.array([2,
 
 
 def gen_data(n_to_gen = 100, len_interval = [0.3, 0.8],y0= np.array([1,0])):
+  """
+  Generate pendulum data
+  Parameters:
+  n_to_gen: number of trajectories to generate
+  len_interval: length interval to sample length parameter over [len_min,len_max]
+  y0: y0
+  """
 
   x = np.zeros([n_to_gen,50])
   aux_vars = np.zeros([n_to_gen,2])
@@ -110,7 +137,7 @@ def gen_data(n_to_gen = 100, len_interval = [0.3, 0.8],y0= np.array([1,0])):
   return data
 
 
-def add_noies(trj,sigma = .03):
+def add_noies(trj,sigma = 0.03):
   noies = np.random.normal(0,sigma, len(trj))
   return trj + noies
 
@@ -129,6 +156,9 @@ def compute_derivs(data):
   return data
 
 def get_aux_vars(data):
+  """
+  sample auxillary latent variables from data
+  """
   n_to_gen = data['x'].shape[0]
   aux_vars = np.zeros([n_to_gen,2])
   qp_dot1 = np.zeros([n_to_gen,2])
@@ -149,6 +179,12 @@ def get_aux_vars(data):
 
 
 def setup_trial(data,sigma):
+  """
+  Setup a trial for a given noise level
+  Parameters:
+  data: data dict
+  sigma: noise level
+  """
   trial_data = noies_data(data, sigma) 
   trial_data = compute_derivs(trial_data)
   trial_data = get_aux_vars(trial_data)
