@@ -1,5 +1,6 @@
 import autograd
 import autograd.numpy as np
+from scipy.integrate import solve_ivp
 
 # default params
 spring_params = {'m':1,
