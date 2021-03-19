@@ -3,8 +3,8 @@ import autograd.numpy as np
 from scipy.integrate import solve_ivp
 
 # default params
-spring_params = {'m':1,
-                 'k':1}
+spring_params = {'m':1, # mass
+                 'k':1} # spring constant
 
 def hamiltonian_fn(coords,params):
   """
