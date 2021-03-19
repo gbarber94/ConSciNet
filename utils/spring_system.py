@@ -6,7 +6,6 @@ spring_params = {'m':1,
                  'k':1}
 
 def hamiltonian_fn(coords,params):
-  
     q, p = np.split(coords,2)
     k = params['k'] # spring constant
     m = params['m'] # mass
