@@ -6,6 +6,12 @@ spring_params = {'m':1,
                  'k':1}
 
 def hamiltonian_fn(coords,params):
+  """
+  Hamiltonian function for a mass-spring system
+  Parameters:
+  coords: (q,p)
+  pen_params: dict containing the system parameters
+  """
     q, p = np.split(coords,2)
     k = params['k'] # spring constant
     m = params['m'] # mass
@@ -14,13 +20,19 @@ def hamiltonian_fn(coords,params):
     return H
 
 def dynamics_fn(t, coords):
+  """
+  Returns the time derivatives
+  """
     dcoords = autograd.grad(hamiltonian_fn)(coords, spring_params) # compute time derivatives of coords
     dqdt, dpdt = np.split(dcoords,2)
     S = np.concatenate([dpdt, -dqdt], axis=-1)
     
     return S
 
-def get_one_trajectory(t_span=[0,10], y0= np.array([1,0]), noise_std=0.1, n_points = 100, **kwargs):
+def get_one_trajectory(t_span=[0,10], y0= np.array([1,0]), n_points = 100, **kwargs):
+  """
+  Evaluate one GT trajectory
+  """
     
     t_eval = np.linspace(t_span[0], t_span[1], n_points)
     
@@ -41,6 +53,14 @@ def get_one_trajectory(t_span=[0,10], y0= np.array([1,0]), noise_std=0.1, n_poin
     return q, p, dqdt,dpdt,t_eval
 
 def gen_data(n_to_gen = 100, m_interval = [0.5, 1], k_interval = [0.1, 0.5],y0= np.array([1,0])):
+  """
+  Generate mass-spring data
+  Parameters:
+  n_to_gen: number of trajectories to generate
+  m_interval: mass interval to sample parameter over [m_min,m_max]
+  k_interval: k interval to sample parameter over [k_min,k_max]
+  y0: y0
+  """
 
   x = np.zeros([n_to_gen,50])
   aux_vars = np.zeros([n_to_gen,2])
@@ -112,6 +132,9 @@ def compute_derivs(data):
   return data
 
 def get_aux_vars(data):
+  """
+  sample auxillary latent variables from data
+  """
   n_to_gen = data['x'].shape[0]
   aux_vars = np.zeros([n_to_gen,2])
   qp_dot1 = np.zeros([n_to_gen,2])
@@ -132,15 +155,21 @@ def get_aux_vars(data):
 
 
 def setup_trial(data,sigma):
+  """
+  Setup a trial for a given noise level
+  Parameters:
+  data: data dict
+  sigma: noise level
+  """
   trial_data = noies_data(data, sigma) # 0.01
   trial_data = compute_derivs(trial_data)
   trial_data = get_aux_vars(trial_data)
 
   # config p as input trajectory
-  x_p = np.zeros([50000,100]) #np.zeros([50000,50])
+  x_p = np.zeros([50000,100])
   idx = 0
   for p in trial_data['p_with_noies']:
-    x_p[idx] = p #p[:50]
+    x_p[idx] = p 
     idx += 1
 
   trial_data['x'] = x_p
