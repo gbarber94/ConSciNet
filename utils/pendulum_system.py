@@ -2,10 +2,10 @@ import autograd
 import autograd.numpy as np
 from scipy.integrate import solve_ivp
 
-# default pen params where g is gravity, m is mass and l is length, the parameters are the same as the constant params used in HNNs: https://arxiv.org/abs/1906.01563
-pen_params = {'g':3,
-              'm':1,
-              'l':1}
+# default pen parameters same as the constant parameters used in HNNs: https://arxiv.org/abs/1906.01563
+pen_params = {'g':3, # gravity
+              'm':1, # mass
+              'l':1} # length
 
 def hamiltonian_fn(coords,pen_params):
   """
