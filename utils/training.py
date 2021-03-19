@@ -14,11 +14,20 @@ def save_model(model,baseline = False, file_path = None):
   return print(f'model weights downloaded: {file_path}')
 
 def load_model(model,file_path):
-  # load pretrained model
+  # load a trained model
   return model.load_state_dict(torch.load(file_path))
 
 
 def train_model(model,dataloader,n_epochs= 1000, beta = 0.005, save = True):
+  """
+  Train a model
+  Parameters:
+  model: model to train
+  dataloader: pytorch DataLoader
+  n_epochs: number of epochs to train for
+  beta: beta parameter on KL-div loss
+  save: True or False
+  """
 
   model = model.train()
   L2_loss = nn.MSELoss()
