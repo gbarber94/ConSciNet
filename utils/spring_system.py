@@ -2,7 +2,7 @@ import autograd
 import autograd.numpy as np
 from scipy.integrate import solve_ivp
 
-# default params
+# default parameters
 spring_params = {'m':1, # mass
                  'k':1} # spring constant
 
