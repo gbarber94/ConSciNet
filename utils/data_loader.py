@@ -2,6 +2,9 @@ import pickle
 import numpy as np
 
 def add_dict(dict1, dict2):
+  """
+  Combines two data dicts
+  """
 
   if 'length' in dict1.keys():
     out_dict = {}
@@ -33,6 +36,12 @@ def add_dict(dict1, dict2):
   return out_dict
 
 def load_data(system, n_to_load = 5):
+  """
+  Loads data for a given system
+  Parameters:
+  system: either 'spring' or 'pendulum' 
+  n_to_load: number of 10k entry data files to load
+  """
 
   with open(f'data/{system}_data_10k_trjs1.pickle', 'rb') as handle:
     data = pickle.load(handle)
