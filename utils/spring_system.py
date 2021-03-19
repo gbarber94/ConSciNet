@@ -11,7 +11,7 @@ def hamiltonian_fn(coords,params):
     k = params['k'] # spring constant
     m = params['m'] # mass
 
-    H = (p**2)/m + k*q**2 # spring hamiltonian (linear oscillator)
+    H = (p**2)/m + k*q**2 # mass-spring hamiltonian function, for simplicity the 1/2 factor is droped.
     return H
 
 def dynamics_fn(t, coords):
