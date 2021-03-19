@@ -3,7 +3,7 @@ import autograd.numpy as np
 
 # System functions
 
-# default pen params, same as the constant params used in the HNN publication: https://arxiv.org/abs/1906.01563
+# default pen params, same as the constant params used in HNNs: https://arxiv.org/abs/1906.01563
 pen_params = {'g':3,
               'm':1,
               'l':1}
