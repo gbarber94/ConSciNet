@@ -13,45 +13,45 @@ def hamiltonian_fn(coords,params):
     coords: (q,p)
     pen_params: dict containing the system parameters
     """
-      q, p = np.split(coords,2)
-      k = params['k'] # spring constant
-      m = params['m'] # mass
+    q, p = np.split(coords,2)
+    k = params['k'] # spring constant
+    m = params['m'] # mass
 
-      H = (p**2)/m + k*q**2 # mass-spring hamiltonian function, for simplicity the 1/2 factor is droped.
-      return H
+    H = (p**2)/m + k*q**2 # mass-spring hamiltonian function, for simplicity the 1/2 factor is droped.
+    return H
 
 def dynamics_fn(t, coords):
     """
     Returns the time derivatives
     """
-      dcoords = autograd.grad(hamiltonian_fn)(coords, spring_params) # compute time derivatives of coords
-      dqdt, dpdt = np.split(dcoords,2)
-      S = np.concatenate([dpdt, -dqdt], axis=-1)
+    dcoords = autograd.grad(hamiltonian_fn)(coords, spring_params) # compute time derivatives of coords
+    dqdt, dpdt = np.split(dcoords,2)
+    S = np.concatenate([dpdt, -dqdt], axis=-1)
 
-      return S
+    return S
 
 def get_one_trajectory(t_span=[0,10], y0= np.array([1,0]), n_points = 100, **kwargs):
     """
     Evaluate one GT trajectory
     """
 
-      t_eval = np.linspace(t_span[0], t_span[1], n_points)
+    t_eval = np.linspace(t_span[0], t_span[1], n_points)
 
-      # ODE solver
-      sys_sol = solve_ivp(fun=dynamics_fn, 
-                             t_span=t_span, 
-                             y0=y0, 
-                             t_eval=t_eval, 
-                             rtol=1e-10, 
-                             **kwargs)
+    # ODE solver
+    sys_sol = solve_ivp(fun=dynamics_fn, 
+                           t_span=t_span, 
+                           y0=y0, 
+                           t_eval=t_eval, 
+                           rtol=1e-10, 
+                           **kwargs)
 
-      q, p = sys_sol['y'][0], sys_sol['y'][1]
+    q, p = sys_sol['y'][0], sys_sol['y'][1]
 
-      dydt = [dynamics_fn(None, y) for y in sys_sol['y'].T]
-      dydt = np.stack(dydt).T
-      dqdt, dpdt = np.split(dydt,2)
+    dydt = [dynamics_fn(None, y) for y in sys_sol['y'].T]
+    dydt = np.stack(dydt).T
+    dqdt, dpdt = np.split(dydt,2)
 
-      return q, p, dqdt,dpdt,t_eval
+    return q, p, dqdt,dpdt,t_eval
 
 def gen_data(n_to_gen = 100, m_interval = [0.5, 1], k_interval = [0.1, 0.5],y0= np.array([1,0])):
     """
