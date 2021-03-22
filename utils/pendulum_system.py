@@ -86,53 +86,53 @@ def gen_data(n_to_gen = 100, len_interval = [0.3, 0.8],y0= np.array([1,0])):
     y0: y0
     """
 
-  x = np.zeros([n_to_gen,50])
-  aux_vars = np.zeros([n_to_gen,2])
-  qp_dot = np.zeros([n_to_gen,2])
-  q_l = []
-  p_l = []
-  qdot_l = []
-  pdot_l = []
-  length = []
-  t_eval_l = []
+    x = np.zeros([n_to_gen,50])
+    aux_vars = np.zeros([n_to_gen,2])
+    qp_dot = np.zeros([n_to_gen,2])
+    q_l = []
+    p_l = []
+    qdot_l = []
+    pdot_l = []
+    length = []
+    t_eval_l = []
 
-  for i in range(n_to_gen):
-    #print(i)
+    for i in range(n_to_gen):
+      #print(i)
 
-    pen_params['l'] = ((len_interval[1] - len_interval[0]) * np.random.rand(1) + len_interval[0])[0]
-    length.append(pen_params['l'])
-    q, p, qdot,pdot, t_e = get_one_trajectory(t_span=[0,10],n_points=100, y0 = y0)
-    t_to_eval = np.random.randint(0,49)
+      pen_params['l'] = ((len_interval[1] - len_interval[0]) * np.random.rand(1) + len_interval[0])[0]
+      length.append(pen_params['l'])
+      q, p, qdot,pdot, t_e = get_one_trajectory(t_span=[0,10],n_points=100, y0 = y0)
+      t_to_eval = np.random.randint(0,49)
 
 
-    # Encoder input
-    x[i] = q[:50] # trj length 50
+      # Encoder input
+      x[i] = q[:50] # trj length 50
 
-    # Aux latent vars
-    #aux_vars[i][:,0]
-    aux_vars[i] = q[50:][t_to_eval], p[50:][t_to_eval]  # q,p length 2
+      # Aux latent vars
+      #aux_vars[i][:,0]
+      aux_vars[i] = q[50:][t_to_eval], p[50:][t_to_eval]  # q,p length 2
 
-    # GT output
-    qp_dot[i]   = qdot[0][50:][t_to_eval], pdot[0][50:][t_to_eval] # q_dot, p_dot length 2
+      # GT output
+      qp_dot[i]   = qdot[0][50:][t_to_eval], pdot[0][50:][t_to_eval] # q_dot, p_dot length 2
 
-    # GT
-    q_l.append(q)
-    p_l.append(p)
-    qdot_l.append(qdot[0])
-    pdot_l.append(pdot[0])
-    t_eval_l.append(t_to_eval)
+      # GT
+      q_l.append(q)
+      p_l.append(p)
+      qdot_l.append(qdot[0])
+      pdot_l.append(pdot[0])
+      t_eval_l.append(t_to_eval)
 
-  data = {'x': x,
-        'aux_vars': aux_vars,
-        'qp_dot': qp_dot,
-        'q': q_l,
-        'p': p_l,
-        'qdot': qdot_l,
-        'pdot': pdot_l,
-        't_eval': t_eval_l,
-        'length': length}
+    data = {'x': x,
+          'aux_vars': aux_vars,
+          'qp_dot': qp_dot,
+          'q': q_l,
+          'p': p_l,
+          'qdot': qdot_l,
+          'pdot': pdot_l,
+          't_eval': t_eval_l,
+          'length': length}
 
-  return data
+    return data
 
 
 def add_noies(trj,sigma = 0.03):
