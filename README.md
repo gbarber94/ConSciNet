@@ -28,13 +28,13 @@ meaningful parameters while respecting the governing physics.
 
 ## Colab links:
 - Pendulum:    
-  -  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/gbarber94/ConSciNet/blob/main/ConSciNet_pendulum.ipynb) <br>
+  -  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github.com/gbarber94/ConSciNet/blob/main/ConSciNet_pendulum.ipynb) <br>
 - Mass-spring: 
-  -  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/gbarber94/ConSciNet/blob/main/ConSciNet_mass_spring.ipynb) <br>
+  -  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github.com/gbarber94/ConSciNet/blob/main/ConSciNet_mass_spring.ipynb) <br>
 
 ## nbviewer links:
-- Pendulum: https://nbviewer.jupyter.org/github.com/gbarber94/ConSciNet/blob/main/ConSciNet_pendulum.ipynb
-- Mass-spring: https://nbviewer.jupyter.org/github.com/gbarber94/ConSciNet/blob/main/ConSciNet_mass_spring.ipynb
+- Pendulum: https://nbviewer.jupyter.org/github/gbarber94/ConSciNet/blob/main/ConSciNet_pendulum.ipynb
+- Mass-spring: https://nbviewer.jupyter.org/github/gbarber94/ConSciNet/blob/main/ConSciNet_mass_spring.ipynb
 
 ## Dependencies
 - PyTorch
