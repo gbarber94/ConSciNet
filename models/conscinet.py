@@ -86,7 +86,7 @@ class MLP(nn.Module):
 class HNN(torch.nn.Module):
     """
     :differentiable_model: MLP(input_dim =2,hidden_dim = 200,output_dim = 1), H_theta
-    :input_dim: number of coords + number of latent variables
+    :input_dim: number of canonical coordinates (q,p) given as input, the latent variables output from the encoder are also passed to the differentiable_model
     """
     
     def __init__(self, input_dim, differentiable_model):    
