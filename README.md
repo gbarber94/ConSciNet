@@ -1,9 +1,9 @@
 # ConSciNet: Joint Parameter Discovery and Generative Modeling of Dynamic Systems
 
-Gregory Barber, Mulugeta A. Haile, and Tzikang Chen | 2021 <br/>
+Gregory Barber, Mulugeta A. Haile, and Tzikang Chen | 2021
 
----
-This repository contains the trained models, data and code used in the publication: https://arxiv.org/abs/2103.10905
+This repository contains the trained models, data and code used in the publication: https://arxiv.org/abs/2103.10905 <br/>
+
 ![](figures/ConSciNet_arch.png)
 
 ## Summary
