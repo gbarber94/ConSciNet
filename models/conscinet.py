@@ -105,7 +105,7 @@ class HNN(torch.nn.Module):
     def time_derivative(self, x,qp, t=None):
 
         H_theta = self.forward(x) # MLP parameterization of the hamiltonian returns an energy like value H*
-        H_partials = torch.autograd.grad(H_theta.sum(), qp, create_graph=True)[0] # partials w.r.t (q & p) 
+        H_partials = torch.autograd.grad(H_theta.sum(), qp, create_graph=True)[0] # returns partials w.r.t (q & p) only, latent var partials are not returned
 
         #Map partials: dH/dp => dq/dt, -dH/dq => dp/dt
         dx = self.canoncial_map(H_partials,n = self.input_dim)
