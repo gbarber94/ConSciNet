@@ -69,7 +69,7 @@ class MLP(nn.Module):
     
     self.net.apply(self.init_weights)
 
-  def forward(self, x, separate_fields=False):
+  def forward(self, x):
     x = self.net(x)
     return x
 
